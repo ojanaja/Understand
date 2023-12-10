@@ -109,7 +109,6 @@ const LoginScreen = ({ navigation }) => {
           autoCapitalize='none'
           placeholder='Email'
           onChangeText={(emailAddress) => setEmailAddress(emailAddress)}
-          placeholderTextColor={COLORS.GRAY}
           style={{
             fontFamily: 'poppins',
             marginHorizontal: 15,
@@ -127,7 +126,6 @@ const LoginScreen = ({ navigation }) => {
         <TextInput
           value={password}
           placeholder='Password'
-          placeholderTextColor={COLORS.GRAY}
           onChangeText={(password) => setPassword(password)}
           secureTextEntry={true}
           style={{

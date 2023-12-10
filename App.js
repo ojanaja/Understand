@@ -32,7 +32,7 @@ export default function App() {
       </SignedIn>
       <SignedOut>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName='CodeVerification'>
+          <Stack.Navigator initialRouteName='Welcome'>
             <Stack.Screen
               name="Welcome"
               component={WelcomeScreen}

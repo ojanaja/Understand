@@ -132,7 +132,6 @@ const SignUpScreen = ({ navigation }) => {
                     autoCapitalize='none'
                     placeholder='Email'
                     onChangeText={(emailAddress) => setEmailAddress(emailAddress)}
-                    placeholderTextColor={COLORS.GRAY}
                     style={{
                         fontFamily: 'poppins',
                         marginHorizontal: 15,
@@ -150,7 +149,6 @@ const SignUpScreen = ({ navigation }) => {
                 <TextInput
                     value={password}
                     placeholder='Password'
-                    placeholderTextColor={COLORS.GRAY}
                     onChangeText={(password) => setPassword(password)}
                     secureTextEntry={true}
                     style={{
@@ -170,7 +168,6 @@ const SignUpScreen = ({ navigation }) => {
                 <TextInput
                     value={confirmPassword}
                     placeholder='Confirm Password'
-                    placeholderTextColor={COLORS.GRAY}
                     onChangeText={onConfirmPasswordChange}
                     secureTextEntry={true}
                     style={{
