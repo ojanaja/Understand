@@ -7,6 +7,7 @@ import HomeScreen from "../Screen/HomeScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { BlurView } from "expo-blur";
+import HomeScreenNavigation from "./HomeScreenNavigation";
 
 const Tab = createBottomTabNavigator();
 export default function TabNavigation() {
@@ -18,7 +19,7 @@ export default function TabNavigation() {
     >
       <Tab.Screen
         name="Home"
-        component={HomeScreen}
+        component={HomeScreenNavigation}
         options={{
           tabBarIcon: ({ focused, color, size }) =>
             focused ? (
