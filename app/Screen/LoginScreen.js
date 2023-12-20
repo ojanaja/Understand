@@ -1,5 +1,6 @@
 import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import COLORS from '../Utils/Colors'
 import { Ionicons } from '@expo/vector-icons';
 import { useWarmUpBrowser } from "../../hooks/warmUpBrowser";
@@ -31,11 +32,38 @@ const LoginScreen = ({ navigation }) => {
 
   const { signIn, setActive, isLoaded } = useSignIn();
 
-  const [emailAddress, setEmailAddress] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [emailAddress, setEmailAddress] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [emailError, setEmailError] = React.useState("");
-  const [passwordError, setPasswordError] = React.useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  useEffect(() => {
+    // Load stored user credentials on component mount
+    loadStoredCredentials();
+  }, []);
+
+  const loadStoredCredentials = async () => {
+    try {
+      const storedCredentials = await AsyncStorage.getItem('@userCredentials');
+      if (storedCredentials) {
+        const { email, password } = JSON.parse(storedCredentials);
+        setEmailAddress(email);
+        setPassword(password);
+      }
+    } catch (error) {
+      console.error('Error loading stored credentials:', error);
+    }
+  };
+
+  const storeCredentials = async () => {
+    try {
+      const credentials = { email: emailAddress, password };
+      await AsyncStorage.setItem('@userCredentials', JSON.stringify(credentials));
+    } catch (error) {
+      console.error('Error storing credentials:', error);
+    }
+  };
 
   const onSignInPress = async () => {
     setEmailError("");
@@ -67,6 +95,10 @@ const LoginScreen = ({ navigation }) => {
         password,
       });
       await setActive({ session: completeSignIn.createdSessionId });
+
+      // Store credentials on successful login
+      storeCredentials();
+
     } catch (err) {
       console.log(err);
     }
