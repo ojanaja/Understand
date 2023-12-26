@@ -25,7 +25,7 @@ export default function ChapterContentScreen() {
         const totalPoints = Number(userPoints) + param.content?.length * 10;
         MarkChapterCompleted(param.chapterId, param.userCourseRecordId, user.primaryEmailAddress.emailAddress, totalPoints).then(resp => {
             if (resp) {
-                ToastAndroid.show('Congratss', ToastAndroid.LONG);
+                ToastAndroid.show('Congratulation! you finished the chapter.', ToastAndroid.LONG);
                 setIsChapterComplete(true);
                 navigation.goBack();
             }

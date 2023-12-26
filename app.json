@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "understand",
+    "name": "Understand",
     "slug": "understand",
-    "version": "1.0.0",
+    "version": "2.0.1",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logoU.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splashU.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -18,13 +18,21 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.informatika.understand",
+      "versionCode": 2,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/adaptive-logoU.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+        "eas": {
+          "projectId": "86cd73f7-9b94-4084-8cc1-2741bd8749a0"
+        }
+      },
+      "scheme": "understand"
   }
 }

@@ -11,7 +11,7 @@ const Header = () => {
     const { userPoints } = useContext(UserPointsContext);
     return isLoaded && (
         <View>
-            <View style={[{ justifyContent: 'space-between', marginTop: 20 }, styles.rowStyle]}>
+            <View style={[{ justifyContent: 'space-between', marginTop: 10 }, styles.rowStyle]}>
                 <View style={styles.rowStyle}>
                     <Image source={{ uri: user?.imageUrl }}
                         style={{ width: 45, height: 45, borderRadius: 99 }} />

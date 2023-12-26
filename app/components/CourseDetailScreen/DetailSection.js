@@ -42,30 +42,17 @@ export default function DetailSection({ course, enrollCourse, userEnrolledCourse
                             paddingHorizontal: 10,
                             height: 40,
                             elevation: 1,
-                            width: 'auto'
+                            width: "100%"
                         }}>
                         <Text style={{
                             fontFamily: 'semi',
                             color: COLORS.PRIMARY,
-                            fontSize: 13
+                            fontSize: 13,
+                            textAlign: 'center'
                         }}>Enroll For Free</Text>
                     </TouchableOpacity> : null}
 
-                    <TouchableOpacity style={{
-                        backgroundColor: COLORS.SECONDARY,
-                        borderRadius: 10,
-                        height: 40,
-                        width: 'auto',
-                        justifyContent: 'center',
-                        paddingHorizontal: 10,
-                        elevation: 1,
-                    }}>
-                        <Text style={{
-                            fontFamily: 'semi',
-                            color: COLORS.BLACK,
-                            fontSize: 13
-                        }}>Membership Rp 9000/Month</Text>
-                    </TouchableOpacity>
+
                 </View>
             </View>
         </View>

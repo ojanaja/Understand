@@ -40,7 +40,8 @@ export default function ChapterSection({ chapterList, userEnrolledCourse }) {
             padding: 10,
             backgroundColor: COLORS.PRIMARY,
             marginTop: 20,
-            borderRadius: 15
+            borderRadius: 15,
+            marginBottom: 30
         }}>
 
             <Text style={{

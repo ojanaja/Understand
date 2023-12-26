@@ -1,6 +1,7 @@
 import { request, gql } from 'graphql-request';
 
 const MASTER_URL = "https://api-us-east-1-shared-usea1-02.hygraph.com/v2/clq12t8470rty01uhdfiaay25/master";
+const READ_URL = "https://us-east-1-shared-usea1-02.cdn.hygraph.com/content/clq12t8470rty01uhdfiaay25/master"
 
 export const getCourseList = async (level) => {
   const query = gql`
@@ -39,7 +40,7 @@ export const getCourseList = async (level) => {
   `;
 
   try {
-    const result = await request(MASTER_URL, query);
+    const result = await request(READ_URL, query);
     return result;
   } catch (error) {
     console.error('Error fetching course list:', error);
@@ -87,7 +88,7 @@ export const getUserEnrolledCourse = async (courseId, userEmail) => {
 }
 
   `
-  const result = await request(MASTER_URL, query);
+  const result = await request(READ_URL, query);
   return result;
 }
 
@@ -154,6 +155,66 @@ export const getUserDetail = async (email) => {
         point
       }
   }`
-  const result = await request(MASTER_URL, query);
+  const result = await request(READ_URL, query);
+  return result;
+}
+
+
+export const GetAllUsers = async () => {
+  const query = gql`
+  query GetAllUsers {
+  userDetails(orderBy: point_DESC) {
+    id
+    profileImage
+    userName
+    point
+  }
+}
+  `
+  const result = await request(READ_URL, query);
+  return result;
+}
+
+
+export const GetAllUserProgressCourse = async (userEmail) => {
+  const query = gql`
+  query GetAllUserEnrolledProgressCourse {
+  userEnrolledCourses(where: {userEmail: "`+ userEmail + `"}) {
+    completedChapter {
+      chapterId
+    }
+    course {
+      banner {
+        url
+      }
+      chapters {
+        id
+        title
+        content{
+          heading
+          description {
+            markdown
+            html
+          }
+          output {
+            markdown
+            html
+          }
+        }
+      }
+      description {
+        markdown
+      }
+      id
+      level
+      name
+      price
+      time
+    }
+  }
+}
+
+  `
+  const result = await request(READ_URL, query);
   return result;
 }

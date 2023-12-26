@@ -6,6 +6,7 @@ import CourseList from "../components/CourseList";
 import { createNewUser, getUserDetail } from "../Services";
 import { UserPointsContext } from "../Context/UserPointsContext";
 import { useUser } from '@clerk/clerk-expo';
+import CourseProgress from "../components/HomeScreen/CourseProgress";
 
 export default function HomeScreen() {
   const { user } = useUser();
@@ -19,7 +20,7 @@ export default function HomeScreen() {
   }, [user]);
 
   const createNewUserIfNeeded = async () => {
-    await createNewUser(user.fullName, user.primaryEmailAddress.emailAddress);
+    await createNewUser(user.fullName, user.primaryEmailAddress.emailAddress, user.imageUrl);
     getUserDetails();
   };
 
@@ -27,12 +28,11 @@ export default function HomeScreen() {
     const resp = await getUserDetail(user.primaryEmailAddress.emailAddress);
     console.log("--", resp.userDetail?.point);
     setUserPoints(resp.userDetail?.point);
-    setRefreshing(false); // Stop the refreshing indicator
+    setRefreshing(false);
   };
 
   const onRefresh = () => {
     setRefreshing(true);
-    // Perform any actions you want to do on refresh
     getUserDetails();
   };
 
@@ -48,13 +48,16 @@ export default function HomeScreen() {
       <View style={{
         backgroundColor: COLORS.GREEN, height: 250, padding: 20
       }} >
-        <Header />
+        <Header userPoints={userPoints} />
       </View>
+
+
       <View style={{ padding: 20 }}>
         <View style={{ marginTop: -90 }}>
+          <CourseProgress />
           <CourseList level={'Basic'} />
         </View>
-        <View style={{ marginTop: 20 }}>
+        <View>
           <CourseList level={'Moderate'} />
           <CourseList level={'Advance'} />
         </View>

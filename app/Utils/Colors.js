@@ -7,7 +7,8 @@ const COLORS = {
   GREEN: "#8cc07b",
   PINK: "#c8a78f",
   BROWN: "#965c34",
-  ERROR: "#d90429"
+  ERROR: "#d90429",
+  BEGRON: "C1F2B0"
 };
 
 export default COLORS;

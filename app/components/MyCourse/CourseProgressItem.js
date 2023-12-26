@@ -2,16 +2,17 @@ import { View, Text, FlatList, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import COLORS from '../../Utils/Colors';
 import { Ionicons } from '@expo/vector-icons';
-import CourseProgressBar from './CourseProgressBar';
+import CourseProgressBar from '../HomeScreen/CourseProgressBar';
 
-export default function CourseItem({ item, completedChapter }) {
+
+export default function CourseProgressItem({ item, completedChapter }) {
     return (
         <View style={{
             padding: 10, backgroundColor: COLORS.PRIMARY,
             marginRight: 15, borderRadius: 15,
         }} >
             <Image source={{ uri: item?.banner?.url }}
-                style={{ width: 210, height: 120, borderRadius: 15 }} />
+                style={{ width: "100%", height: 170, borderRadius: 15 }} />
             <View style={{ padding: 7 }}>
                 <Text style={{
                     fontFamily: 'bold',

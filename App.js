@@ -22,13 +22,34 @@ export default function App() {
 
   const [fontsLoaded] = useFonts({
     poppins: require("./assets/fonts/Poppins-Regular.ttf"),
+    medium: require("./assets/fonts/Poppins-Medium.ttf"),
     bold: require("./assets/fonts/Poppins-Bold.ttf"),
     light: require("./assets/fonts/Poppins-Light.ttf"),
     semi: require("./assets/fonts/Poppins-SemiBold.ttf"),
   });
 
+  const tokenCache = {
+    async getToken(key) {
+      try {
+        return SecureStore.getItemAsync(key);
+      } catch (err) {
+        return null;
+      }
+    },
+    async saveToken(key, value) {
+      try {
+        return SecureStore.setItemAsync(key, value);
+      } catch (err) {
+        return;
+      }
+    },
+  };
+
   return (
-    <ClerkProvider publishableKey={Constants.expoConfig.extra.clerkPublishableKey}>
+    <ClerkProvider
+      publishableKey={"pk_test_cmVsZXZhbnQtaGFkZG9jay01MS5jbGVyay5hY2NvdW50cy5kZXYk"}
+      tokenCache={tokenCache}
+    >
       <UserPointsContext.Provider value={{ userPoints, setUserPoints }}>
         <CompleteChapterContext.Provider value={{ isChapterComplete, setIsChapterComplete }}>
           <SignedIn>
@@ -38,7 +59,7 @@ export default function App() {
           </SignedIn>
           <SignedOut>
             <NavigationContainer>
-              <Stack.Navigator initialRouteName='Welcome'>
+              <Stack.Navigator>
                 <Stack.Screen
                   name="Welcome"
                   component={WelcomeScreen}
